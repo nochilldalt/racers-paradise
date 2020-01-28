@@ -30,7 +30,7 @@ export const validateToken = async (token: string) => {
 	}
 };
 
-interface IPayload {
+export interface IPayload {
 	userid: number;
 	tokenid?: number;
 	unique?: string;
