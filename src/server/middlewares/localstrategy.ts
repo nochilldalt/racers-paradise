@@ -1,6 +1,6 @@
 import * as passport from 'passport'
 import * as LocalStrategy from 'passport-local'
-// import db from '../db';
+import db from '../db';
 import { comparePassword } from '../security/passwords';
 
 passport.serializeUser((user, done)=>done(null,user))
@@ -11,12 +11,13 @@ passport.use(new LocalStrategy.Strategy({
     usernameField: 'email'
 }, async (email, password, done) => {
     try {
-        // let[ user ]:any = await db.users.findEmail(email)
-        // if (user&& comparePassword(password, user.password)) {
-        //     done(null, user)
-        // } else {
-        //     done(null, false)
-        // }
+        let[ user ] = await db.users.findEmail(email)
+        if (user&& comparePassword(password, user.password)) {
+            delete user.password
+            done(null, user)
+        } else {
+            done(null, false)
+        }
     } catch (error) {
         done(error)
     }
