@@ -13,4 +13,4 @@ export default {
 	insert,
 	update,
 	match
-};
+}
