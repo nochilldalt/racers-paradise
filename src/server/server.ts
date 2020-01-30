@@ -3,6 +3,8 @@ import * as morgan from 'morgan';
 import * as path from 'path';
 import * as passport from 'passport';
 import routes from './routes';
+import './middlewares/localstrategy'
+import './middlewares/bearerstrategy'
 
 const app = express();
 
