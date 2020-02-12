@@ -17,7 +17,11 @@ export const Query = <T = any>(query: string, values?: any) => {
 
 import users from './queries/users';
 import tokens from './queries/tokens';
+import posts from './queries/posts';
+import vehicles from './queries/vehicles'
 export default {
 	users,
-	tokens
+	tokens,
+	posts,
+	vehicles
 };

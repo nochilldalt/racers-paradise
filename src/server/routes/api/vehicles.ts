@@ -12,8 +12,8 @@ const isGuest:RequestHandler = (req:any, res, next)=>{
 }
 
 const isPostOwner:RequestHandler = async (req:any, res, next)=>{
-    const posts: any = await db.posts.one(req.params.id);
-  if (posts[0].userid === req.user.id) {
+    const vehicles: any = await db.vehicles.one(req.params.id);
+  if (vehicles[0].userid === req.user.id) {
     return next()
   } else {
     return res.sendStatus(401)
@@ -22,7 +22,6 @@ const isPostOwner:RequestHandler = async (req:any, res, next)=>{
 
 // router.get('/user', isGuest, async (req:any, res) => {
 //   try {
-
 //     let blogs = await db.posts.(req.user.id)
 //     res.json(blogs)
 //   } catch (error) {
@@ -30,10 +29,11 @@ const isPostOwner:RequestHandler = async (req:any, res, next)=>{
 //     res.status(500).json(" My code suck let me kno");
 //   }
 // })
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, nevt) => {
+    const id = Number(req.params.id)
   try {
-    const [post] = await db.posts.one(Number(req.params.id));
-    res.json(post);
+    const [vehicle] = await db.vehicles.one(id);
+    res.json(vehicle);
   } catch (error) {
     console.log(error);
     res.status(500).json(" My code suck let me kno");
@@ -42,20 +42,24 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/",  async (req, res, next) => {
   try {
-    const posts = await db.posts.all();
-    res.json(posts);
+    const vehicles = await db.vehicles.all();
+    res.json(vehicles);
   } catch (error) {
     console.log(error);
     res.status(500).json(" My code suck let me kno");
   }
 });
 
+
 router.post("/",async (req, res, next) => {
   try {
-    const result = await db.posts.post(
-      req.body.user_id,
-      req.body.title,
-      req.body.image_url
+    const result = await db.vehicles.post(
+      req.body.make,
+      req.body.model,
+      req.body.year,
+      req.body.trim,
+      req.body.description,
+      req.body.user_id
     );
       res.json(result);
   } catch (error) {
@@ -65,11 +69,15 @@ router.post("/",async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
+    const id = Number(req.params.id)
   try {
-    const edit = await db.posts.edit(
-      req.body.title,
-      req.body.image_url,
-      Number(req.params.id)
+    const edit = await db.vehicles.edit(
+      req.body.make,
+      req.body.model,
+      req.body.year,
+      req.body.trim, 
+      req.body.description,
+      id
     );
     res.json(edit);
   } catch (error) {
@@ -79,10 +87,9 @@ router.put("/:id", async (req, res, next) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  try {
-    // let removeTag = await db.blogtags.remove(id);
-    let destroy = await db.posts.destroy(id);
+    const id = Number(req.params.id)    
+    try {
+    let destroy = await db.vehicles.destroy(id);
     res.json({destroy});
   } catch (error) {
     console.log(error);
