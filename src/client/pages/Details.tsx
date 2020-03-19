@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import { IPosts } from '../Utils/interfaces'
 import { json } from '../Utils/api-services'
 import PostCard from '../components/PostCard'
-
+import { FaBeer } from 'react-icons/fa';
 import { RouteComponentProps } from 'react-router';
 
 const Details: React.FC<DetailsProps> = (props) => {
@@ -14,24 +14,30 @@ const Details: React.FC<DetailsProps> = (props) => {
         title: 'string',
         first_name:'string',
         image_url: 'string',
-        created_at: new Date
+        created_at: new Date()
     })
 
     useEffect(() => {
         (async () => {
-            try {
-                let post = await json(`/api/posts/${props.match.params.id}`)
-                setPost(post)
-            } catch (error) {
-                console.log(error)
-            }
+            let post = await json(`/api/posts/${props.match.params.id}`)
+            setPost(post)
         })()
     }, [])
 
     return(
         <>
-       <PostCard key={`postcard-${post.id}`} post={post}/>
-        </>
+        <section className="row justify-content-center align-items-center" >
+            <article className="col-md-8" >
+                <div className="card shadow m-1 p-1">
+                    <div className="card-body">
+                        <h2>{post.first_name}</h2>
+                        <h4>{post.title}</h4>
+                        <img src={post.image_url} alt={post.title} />
+                    </div>
+                </div>
+            </article>
+        </section>
+    </>
     )
 }
 
