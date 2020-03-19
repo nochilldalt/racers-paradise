@@ -7,8 +7,8 @@ const pool = mysql.createPool(config.mysql);
 export const Query = <T = any>(query: string, values?: any) => {
 	const sql = mysql.format(query, values);
 
-	logger.info('Executing Query');
-	logger.info(sql);
+	logger.silly('Executing Query');
+	logger.silly(sql);
 
 	return new Promise<T>((resolve, reject) => {
 		pool.query(sql, (err, result) => {
