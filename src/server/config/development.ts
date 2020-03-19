@@ -1,9 +1,12 @@
 export default{
     mysql:{
         host: "localhost",
-        user: "root",
-        password: "root",
-        database: "finalproject"
+        user: "all",
+        password: "all",
+        database: "racers_paradise"
     },
-    secret: "nissan"
+    secret: "nissan",
+    logs: {
+        level: 'debuf'
+    }
 }

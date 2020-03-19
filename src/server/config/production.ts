@@ -5,5 +5,8 @@ export default {
       password: process.env.DB_PASS,
       database: process.env.DB_SCHEMA
     },
-    secret: process.env.SECRET
+    secret: process.env.SECRET,
+    logs: {
+      level: process.env.LOG_LEVEL
+  }
 }
