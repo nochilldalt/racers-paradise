@@ -5,6 +5,7 @@ import { json } from '../Utils/api-services';
 import PostCard from '../components/PostCard';
 
 import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Details: React.FC<DetailsProps> = props => {
 	const [post, setPost] = useState<IPosts>({

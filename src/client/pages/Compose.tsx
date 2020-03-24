@@ -30,27 +30,14 @@ const Compose: React.FC<ComposeProps> = (props) => {
         <Card className="shadow m-2 p-1" >
         <Card.Body>
         <Form>
-        <h4>New Post</h4>
+        <h4>Edit Post</h4>
         <br/>
         <Form.Control placeholder="Title" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}/>
         <Form.Control placeholder="Title" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}/>
-        <Button variant="secondary" block className="mx-auto w-50 " >Add Post</Button>
+        <Button onClick={submitPost} variant="secondary" block className="mx-auto w-50 " >Add Post</Button>
         </Form>
         </Card.Body>
         </Card>
-        {/* <div className="card shadow m-2 p-1">
-            <div className="card-body" >
-                <form>
-                    <h4>New Post</h4>
-                    <br/>
-                    <input className="form-control" placeholder="Title" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
-                    <br/>
-                    <input className="form-control" placeholder="Title" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
-                    <br/>
-                    <button className="btn btn-secondary mx-auto w-50 btn-block" onClick={submitPost} >Add Post</button>
-                </form>
-            </div>
-        </div> */}
         </>
     )
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IPosts } from '../Utils/interfaces';
-import { Link, useHistory} from 'react-router-dom';
+import { Link, useHistory, RouteComponentProps } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
 
 
@@ -18,15 +18,17 @@ const Template: React.FC<TemplateProps> = (props) => {
                     <div onClick={test} className="card shadow m-1 p-1">
                         <div className="card-body">
                             <h2>{props.post.first_name}</h2>
-                            <br/>
+                            <br />
                             <img src={props.post.image_url} alt={props.post.title} />
-                            <br/>
-                            <br/>
-                            <h5 className="col-16" > <FaHeart  /> likes 69</h5>
-                            <br/>
+                            <br />
+                            <br />
+                            <h5 className="col-16" > <FaHeart /> likes 69</h5>
+                            <br />
                             <h4>{props.post.title}</h4>
-                            <br/>
+                            <br />
                             <p>69 Comments</p>
+                            {/* <Link className="btn btn-secondary" to={`/edit/${props.match.params.id}`} /> */}
+
                         </div>
                     </div>
                 </article>
@@ -35,7 +37,7 @@ const Template: React.FC<TemplateProps> = (props) => {
     )
 }
 
-interface TemplateProps {
+interface TemplateProps  {
     post: IPosts
 }
 

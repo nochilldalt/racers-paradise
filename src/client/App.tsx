@@ -8,6 +8,7 @@ import login from './pages/login';
 import Register from './pages/register';
 import Profile from './pages/profile';
 import Compose from './pages/Compose';
+import Edit from './pages/edit';
 
 const App: React.FC<AppProps> = () => {
 	return (
@@ -24,6 +25,7 @@ const App: React.FC<AppProps> = () => {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/compose" component={Compose} />
+					<Route exact path="/edit/:id" component={Edit} />
 				</Switch>
 			</main>
 		</BrowserRouter>
